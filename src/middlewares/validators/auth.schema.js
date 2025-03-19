@@ -34,7 +34,7 @@ export const login = {
       .when("username", {
         is: emailValidator,
         then: Joi.string().required().messages({
-          "any.required": "Password is required when logging in with an email",
+          "any.required": "Password is required",
         }),
       })
       .messages({

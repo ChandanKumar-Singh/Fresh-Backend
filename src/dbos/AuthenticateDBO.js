@@ -252,13 +252,13 @@ class AuthenticateDBO {
     if (!tempAuth.authenticate(password)) {
       const err = new ApiError(
         httpStatus.OK,
-        "Invalid credentials! Please verify."
+        ResponseCodes.AUTH_ERRORS.INVALID_CREDENTIALS
       );
       throw err;
     }
 
     if (tempAuth && tempAuth.status !== Constants.USER_STATUS.ACTIVE) {
-      throw new ApiError(httpStatus.OK, "User Suspended", true, "", -1);
+      throw new ApiError(httpStatus.BAD_REQUEST, ResponseCodes.ACCOUNT.ACCOUNT_SUSPENDED, true, "", -1);
     }
 
     tempAuth.last_login = new Date();

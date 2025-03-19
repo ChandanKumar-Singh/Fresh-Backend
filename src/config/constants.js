@@ -126,6 +126,10 @@ const Constants = {
 
 // Destructure environment variables for easy access
 const {
+    APP_NAME,
+    APP_VERSION,
+    APP_DESCRIPTION,
+    APP_AUTHOR,
     MONGO_URI,
     NODE_ENV,
     SECRET_ACCESS_KEY,
@@ -144,6 +148,15 @@ const {
     WARNING_ENABLED,
     ERROR_ENABLED
 } = process.env;
+
+
+// App Details
+const app = {
+    name: APP_NAME || "NodeJS API",
+    version: APP_VERSION || "1.0.0",
+    description: APP_DESCRIPTION || "NodeJS API Description",
+    author: APP_AUTHOR || "Author Name",
+};
 
 // Environment configurations
 const envs = {

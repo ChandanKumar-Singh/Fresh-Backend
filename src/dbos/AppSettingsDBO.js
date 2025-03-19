@@ -3,11 +3,13 @@ import { logg } from "../utils/logger.js";
 
 class AppSettingsDBO {
     async getSettings({ session }) {
-        let settings = await AppSettings.findOne().session(session);
-        if (!settings) {
-            settings = await AppSettings.create({}, { session });
+        let settings = await AppSettings.find().session(session);
+        logg(settings);
+        if (!settings || settings.length === 0) {
+            let newSettings = new AppSettings();
+            return await newSettings.save({ session });
         }
-        return settings;
+        return mongoOne(settings);
     }
 
     async updateSettings(area, settings = {}, { session }) {
